@@ -63,7 +63,9 @@ typedef struct {
  * Structure for defining a network connection.
  */
 struct Network {
-	IoT_Error_t (*connect)(Network *, TLSConnectParams *);
+  int socket_id;
+
+  IoT_Error_t (*connect)(Network *, TLSConnectParams *);
 
 	IoT_Error_t (*read)(Network *, unsigned char *, size_t, Timer *, size_t *);    ///< Function pointer pointing to the network function to read from the network
 	IoT_Error_t (*write)(Network *, unsigned char *, size_t, Timer *, size_t *);    ///< Function pointer pointing to the network function to write to the network
@@ -72,7 +74,7 @@ struct Network {
 	IoT_Error_t (*destroy)(Network *);        ///< Function pointer pointing to the network function to destroy the network object
 
 	TLSConnectParams tlsConnectParams;        ///< TLSConnect params structure containing the common connection parameters
-	TLSDataParams tlsDataParams;            ///< TLSData params structure containing the connection data parameters that are specific to the library being used
+	//TLSDataParams tlsDataParams;            ///< TLSData params structure containing the connection data parameters that are specific to the library being used
 };
 
 /**
